@@ -1,0 +1,103 @@
+<html>
+
+<head>
+    <script src="break_infinity.js"></script>
+    <script src="main.js"></script>
+    <style>
+        .number {
+            font-variant: small-caps;
+            text-align: center;
+            font-size: 30px;
+        }
+
+        .NPS {
+            font-variant: small-caps;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        body {
+            font-family: Arial;
+        }
+
+        /* Style the tab */
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+        /* Style the buttons inside the tab */
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+
+        /* Change background color of buttons on hover */
+        .tab button:hover {
+            background-color: #ddd;
+        }
+
+        /* Create an active/current tablink class */
+        .tab button.active {
+            background-color: #ccc;
+        }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+
+        .upgrade {
+            text-align: center;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <p id="number" class="number">Number: 0</p>
+    <p id="NPS" class="NPS">Number per second: 1.00</p>
+    <br>
+    <div class="tab">
+        <button class="tablinks" onclick="openCity(event, 'Upgrades')">Upgrades</button>
+        <button class="tablinks" onclick="openCity(event, 'Points')">Points</button>
+        <button class="tablinks" onclick="openCity(event, 'Settings')">Settings</button>
+    </div>
+    <div id="Upgrades" class="tabcontent">
+        <button id="upgrade1" onclick="Upgrade1()" class="upgrade">Increase NPS by 6% <br> Cost: 10 <br> Level
+            0</button>
+        <br>
+        <br>
+        <button id="upgrade2" onclick="Upgrade2()" class="upgrade">Increase NPS by 8% <br> Cost: 50 <br> Level
+            0</button>
+        <br>
+        <br>
+        <button id="upgrade3" onclick="Upgrade3()" class="upgrade">Increase NPS by 10% <br> Cost: 300 <br> Level
+            0</button>
+    </div>
+    <div id="Points" class="tabcontent">
+        <span id="TotalPoints">You have 0 points</span>
+        <br>
+        <br>
+        <button onclick="points()" id="layer1">Reset to earn 0 points <br> Total Multiplier: 1.00x</button>
+        <br>
+        <button onclick="Upgrade4()" id="upgrade4">Increases number multiplier per second. <br> Cost: 5 <br> Level:
+            0</button>
+    </div>
+    <div id="Settings" class="tabcontent">
+        <button onclick="saveGame()">Save Game!</button>
+        <button onclick="loadGame()">Load Game!</button>
+    </div>
+</body>
+
+</html>
