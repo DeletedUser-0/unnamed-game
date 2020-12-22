@@ -2,8 +2,7 @@ var player = {
     number: {
         have: 0,
         get: 0.02,
-        passiveBoost: 1,
-        Boost: 1
+        passiveBoost: 1
     },
     upgrade1: {
         cost: 10,
@@ -25,7 +24,7 @@ var player = {
         get: 0
     },
     upgrade4: {
-        cost: 4.9999,
+        cost: 5,
         level: 0
     }
 }
@@ -35,10 +34,7 @@ function add() {
 }
 
 function increaseNumber() {
-    player.number.Boost = Decimal.times(player.number.Boost, player.number.passiveBoost);
-    if (Decimal.compare(player.upgrade4.level, 1) >= 0) {
-        player.number.get = Decimal.times(player.number.get, player.number.Boost)
-    }
+    player.number.get = Decimal.times(player.number.get, player.number.passiveBoost);
 }
 
 function Upgrade1() {
@@ -76,7 +72,7 @@ function Upgrade4() {
         player.number.have = Decimal.sub(player.number.have, player.upgrade4.cost);
         player.upgrade4.cost = Decimal.times(player.upgrade3.cost, 1.25);
         player.upgrade4.level = Decimal.add(player.upgrade3.level, 1);
-        player.number.passiveBoost = Decimal.times(player.number.passiveBoost, 1.00002);
+        player.number.passiveBoost = Decimal.times(player.number.passiveBoost, 1.00001);
     }
 }
 
@@ -84,7 +80,7 @@ function points() {
     if (Decimal.compare(Decimal.pow(player.number.have.exponent, 1.25), player.points.have) >= 0) {
         player.points.have = Math.round(Decimal.add(player.points.get, player.points.have));
         player.number.have = new Decimal(0);
-        player.number.get = Decimal.pow(1.2, player.points.have).divide(50);
+        player.number.get = Decimal.times(1.25, player.points.have);
         player.upgrade1.cost = new Decimal(10);
         player.upgrade2.cost = new Decimal(50);
         player.upgrade3.cost = new Decimal(300);
@@ -143,7 +139,7 @@ function UpdateUI() {
     document.getElementById('upgrade1').innerHTML = "Increase NPS by 6% <br> Cost: " + notate3(player.upgrade1.cost) + "<br> Level " + notate(player.upgrade1.level)
     document.getElementById('upgrade2').innerHTML = "Increase NPS by 8% <br> Cost: " + notate3(player.upgrade2.cost) + "<br> Level " + notate(player.upgrade2.level)
     document.getElementById('upgrade3').innerHTML = "Increase NPS by 10% <br> Cost: " + notate3(player.upgrade3.cost) + "<br> Level " + notate(player.upgrade3.level)
-    document.getElementById('layer1').innerHTML = "Reset to earn " + notate(player.points.get) + " points <br> Total Multiplier: " + notate2(Decimal.pow(1.5, player.points.have)) + "x";
+    document.getElementById('layer1').innerHTML = "Reset to earn " + notate(player.points.get) + " points <br> Total Multiplier: " + notate2(Decimal.pow(1.25, player.points.have)) + "x";
     document.getElementById('TotalPoints').innerHTML = "You have " + notate(Math.round(player.points.have)) + " points";
     document.getElementById('upgrade4').innerHTML = "Increases number multiplier per second. <br> Cost: " + notate3(player.upgrade4.cost) + "<br> Level " + notate(player.upgrade4.level);
 }
